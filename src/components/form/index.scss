@@ -1,0 +1,27 @@
+.flex{
+
+   
+    display: flex;
+    flex-direction: column; 
+    width: 50%;
+
+    fieldset{
+
+        display:flex;
+
+        width: 20%;
+        margin-left: 30%;
+        margin-bottom: 10px;
+        
+
+        &>input,&>button{
+            margin-bottom: 10px;
+        }
+
+        &>label{
+            margin-bottom: 5px;
+        }
+
+    }
+
+}
