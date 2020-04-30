@@ -10,8 +10,8 @@ class Form extends React.Component {
         this.state = {
             password: "please Enter",
             passwordLength: 12,
-            big: false,
-            special: false
+            big: true,
+            special: true
         }
 
         this.characters = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -22,7 +22,9 @@ class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
+
     }
+    // End Constructor
 
     // FormMethods
     handleSubmit(event){
@@ -50,6 +52,18 @@ class Form extends React.Component {
           })
         
     }
+
+    componentDidMount() {
+        this.timer = setInterval(
+            () => this.setState(prevState => ({ test: !prevState.test })),
+            1000,
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
 
     // HandlePassword
 
@@ -91,7 +105,9 @@ return(
         <input name="password" value={this.state.password} readOnly/>
         <button>Generate Password</button>
     </fieldset>
+
     <fieldset>
+
     <label><span>Setting</span></label>
             
             <label>
@@ -100,12 +116,12 @@ return(
             </label>
             
             <label>
-            <input type="checkbox" name="big" onChange={this.handleCheck} />
+            <input type="checkbox" name="big" checked={this.state.big} onChange={this.handleCheck} />
                 useMixedCase
             </label>
             
             <label>
-                <input type="checkbox" name="special" onChange={this.handleCheck}/>
+                <input type="checkbox" name="special" checked={this.state.special} onChange={this.handleCheck}/>
                 specialCase
             </label>
     </fieldset>
